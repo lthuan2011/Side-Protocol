@@ -34,11 +34,7 @@ sided status 2>&1 | jq .SyncInfo.catching_up
 sided tx staking create-validator \
   --amount=1000000uside \
   --pubkey=$(sided tendermint show-validator) \
-  --moniker="<moniker>" \
-  --identity="<identity>" \
-  --website="<website>" \
-  --details="<details>" \
-  --security-contact="<contact>" \
+  --moniker="Your_Moniker" \
   --chain-id="side-testnet-1" \
   --commission-rate="0.10" \
   --commission-max-rate="0.20" \
