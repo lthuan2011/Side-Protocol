@@ -43,3 +43,29 @@ sided tx staking create-validator \
   --fees="200uside" \
   --from=wallet
 ```
+# Services Management
+```
+# Reload Service
+sudo systemctl daemon-reload
+
+# Enable Service
+sudo systemctl enable sided
+
+# Disable Service
+sudo systemctl disable sided
+
+# Start Service
+sudo systemctl start sided
+
+# Stop Service
+sudo systemctl stop sided
+
+# Restart Service
+sudo systemctl restart sided
+
+# Check Service Status
+sudo systemctl status sided
+
+# Check Service Logs
+sudo journalctl -u sided -f --no-hostname -o cat
+```
