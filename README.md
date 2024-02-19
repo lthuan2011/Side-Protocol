@@ -8,7 +8,9 @@ Telegram - https://t.me/SideProtocolOfficial
 
 Discord - https://discord.gg/sideprotocol
 
-Github https://github.com/sideprotocol
+Github - https://github.com/sideprotocol
+
+Explorer - https://explorer.side.exchange/testnet/staking
 
 # Auto install
 ```
