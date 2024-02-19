@@ -18,6 +18,15 @@ sudo apt install curl && source <(curl -s https://nodesync.top/side_protocol_aut
 ```
 sided keys add wallet
 ```
+# Query Wallet Balance
+```
+sided q bank balances $(sided keys show wallet -a)
+```
+# Check sync status
+```
+sided status 2>&1 | jq .SyncInfo.catching_up
+```
+
 # Create Validator
 ```
 sided tx staking create-validator \
