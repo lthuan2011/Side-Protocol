@@ -69,3 +69,25 @@ sudo systemctl status sided
 # Check Service Logs
 sudo journalctl -u sided -f --no-hostname -o cat
 ```
+#  Fix err NOT SYNCED
+```
+cd $HOME
+sudo systemctl stop sided
+cp $HOME/.sidechain/data/priv_validator_state.json $HOME/.sidechain/priv_validator_state.json.backup
+sided tendermint unsafe-reset-all --home $HOME/.sidechain --keep-addr-book
+SNAP_RPC="https://testnet-rpc.side.one:443"
+              
+LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
+BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
+TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+                          
+sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
+              s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
+              s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
+              s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.sidechain/config/config.toml
+                          
+mv $HOME/.sidechain/priv_validator_state.json.backup $HOME/.sidechain/data/priv_validator_state.json
+peers=$(curl -s https://raw.githubusercontent.com/lthuan2011/Side-Protocol/main/peers.txt)
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" ~/.sidechain/config/config.toml
+sudo systemctl restart sided && sudo journalctl -u sided -f --no-hostname -o cat
+```
