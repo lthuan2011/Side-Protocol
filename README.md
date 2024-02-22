@@ -14,7 +14,7 @@ Explorer - https://explorer.side.exchange/testnet/staking
 
 # Auto install
 ```
-sudo apt install curl -y && source <(curl -s https://nodesync.top/side_protocol_auto)
+sudo apt install curl -y && source <(curl -s https://raw.githubusercontent.com/lthuan2011/Side-Protocol/main/side_auto)
 ```
 # Create a wallet
 ```
