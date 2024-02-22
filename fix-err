@@ -19,7 +19,7 @@ sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
 mv $HOME/.sidechain/priv_validator_state.json.backup $HOME/.sidechain/data/priv_validator_state.json
 
 #peers=$(curl -s https://raw.githubusercontent.com/lthuan2011/Side-Protocol/main/peers.txt)
-peers="2eba9c8e6fb9d56bbdd10d007a598541c37f6493@13.212.61.41:26656"
+peers="e0b4a05daa0647ad6ba13193031f8612f439d900@148.251.69.40:16456"
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" ~/.sidechain/config/config.toml
 rm -rf ~/.sidechain/wasm
 curl -o - -L https://ss-t.side.nodestake.org/wasm.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.sidechain
