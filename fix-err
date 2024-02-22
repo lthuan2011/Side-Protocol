@@ -2,6 +2,9 @@ cd $HOME
 sudo systemctl stop sided
 cp $HOME/.sidechain/data/priv_validator_state.json $HOME/.sidechain/priv_validator_state.json.backup
 sided tendermint unsafe-reset-all --home $HOME/.sidechain --keep-addr-book
+#Download genesis and addrbook              
+curl -Ls https://raw.githubusercontent.com/lthuan2011/Side-Protocol/main/genesis.json > $HOME/.sidechain/config/genesis.json
+curl -Ls https://raw.githubusercontent.com/lthuan2011/Side-Protocol/main/addrbook.json > $HOME/.sidechain/config/addrbook.json
 SNAP_RPC="https://testnet-rpc.side.one:443"
               
 LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
